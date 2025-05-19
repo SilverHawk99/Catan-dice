@@ -1,18 +1,27 @@
 body {
   margin: 0;
-  overflow: hidden;
-  font-family: sans-serif;
-  background: #f4f4f4;
+  background: #eef2f3;
+  font-family: Arial, sans-serif;
+  text-align: center;
 }
+
+#scene {
+  display: block;
+  width: 100vw;
+  height: 70vh;
+}
+
 #ui {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: rgba(255,255,255,0.8);
-  padding: 10px;
-  border-radius: 8px;
+  margin: 20px;
 }
-#rollButton {
+
+button {
   font-size: 1.5rem;
   padding: 10px 20px;
+  cursor: pointer;
+}
+
+#result {
+  margin-top: 10px;
+  font-size: 1.3rem;
 }
