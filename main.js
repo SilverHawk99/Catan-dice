@@ -1,13 +1,9 @@
-import * as THREE from './libs/three.module.js';
-import * as CANNON from './libs/cannon-es.js';
-import { Howl } from './libs/howler.min.js';
-
 const canvas = document.getElementById('scene');
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.set(0, 6, 10);
 
 const light = new THREE.DirectionalLight(0xffffff, 1);
@@ -18,11 +14,16 @@ scene.add(light);
 const world = new CANNON.World({ gravity: new CANNON.Vec3(0, -9.82, 0) });
 
 // Boden
-const groundBody = new CANNON.Body({ type: CANNON.Body.STATIC, shape: new CANNON.Plane() });
+const groundBody = new CANNON.Body({
+  type: CANNON.Body.STATIC,
+  shape: new CANNON.Plane()
+});
 world.addBody(groundBody);
 
 // Sound
-const rollSound = new Howl({ src: ['assets/sounds/dice-roll.mp3'] });
+const rollSound = new Howl({
+  src: ['assets/sounds/dice-roll.mp3']
+});
 
 // Würfel-Konfiguration
 const diceConfigs = [
@@ -87,7 +88,4 @@ function rollDice() {
   }
 }
 
-document.getElementById('rollButton').addEventListener('click', () => {
-  rollDice();
-});
-
+document.getElementById('rollButton').addEventListener('click', rollDice);
