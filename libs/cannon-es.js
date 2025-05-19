@@ -1,1 +1,1 @@
-// Cannon-es library placeholder
+// cannon-es.js placeholder
