@@ -1,3 +1,6 @@
+import * as THREE from './libs/three.module.js';
+import * as CANNON from './libs/cannon-es.js';
+
 const canvas = document.getElementById('scene');
 const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -13,7 +16,6 @@ scene.add(light);
 // Physics
 const world = new CANNON.World({ gravity: new CANNON.Vec3(0, -9.82, 0) });
 
-// Boden
 const groundBody = new CANNON.Body({
   type: CANNON.Body.STATIC,
   shape: new CANNON.Plane()
@@ -25,7 +27,6 @@ const rollSound = new Howl({
   src: ['assets/sounds/dice-roll.mp3']
 });
 
-// Würfel-Konfiguration
 const diceConfigs = [
   { name: 'standard1', texture: 'standard-die.png' },
   { name: 'standard2', texture: 'standard-die.png' },
@@ -57,7 +58,6 @@ function createDice(textureFile, posX) {
   diceBodies.push(body);
 }
 
-// Erstelle alle Würfel
 createDice('standard-die.png', -3);
 createDice('standard-die.png', -1);
 createDice('pirate-die.png', 1);
@@ -78,13 +78,12 @@ function animate() {
 }
 animate();
 
-// Roll-Auslösung
 function rollDice() {
   rollSound.play();
   for (let body of diceBodies) {
     body.velocity.set((Math.random() - 0.5) * 10, 10, (Math.random() - 0.5) * 10);
     body.angularVelocity.set(Math.random() * 10, Math.random() * 10, Math.random() * 10);
-    body.position.y = 5; // Reset height
+    body.position.y = 5;
   }
 }
 
